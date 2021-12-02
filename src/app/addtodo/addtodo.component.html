@@ -1,0 +1,21 @@
+<!--<p>addtodo works!</p>-->
+
+<h3 class="m-5">Add a Todo Task</h3>
+<form class="m-5" (ngSubmit)="onSubmit()">
+    <div class="mb-3">
+      <label for="title" class="form-label">Todo Title</label>
+      <input type="text" [(ngModel)]="title" class="form-control" name="title" id="title" aria-describedby="emailHelp">
+     
+    </div>
+    <div class="mb-3">
+      <label for="desc" class="form-label">Todo Description</label>
+      <input type="text" [(ngModel)]="desc" class="form-control" name="desc" id="desc">
+    </div>
+    
+    <button type="submit" class="btn btn-primary">Add Todo</button>
+  </form>
+
+
+  <!--(ngSubmit)="onSubmit()"
+  [(ngModel)]="title"
+-->

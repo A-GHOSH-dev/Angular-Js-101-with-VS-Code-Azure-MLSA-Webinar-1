@@ -1,0 +1,34 @@
+<!--<p>todos works!</p>-->
+<div class="m-5">
+
+    <h1 class="text-center">My Todo App</h1>
+<!--<ul *ngFor = "let todo of todos">
+    <li>{{todo.slno}} - {{todo.title}} - {{todo.desc}} - {{todo.active}}</li>
+</ul>-->
+
+<!--<div *ngFor = "let todo of todos">
+    <app-todoitems [todo]=todo></app-todoitems>
+</div>
+-->
+
+
+<!--<app-addtodo (todoAdd)="addTodo($event)"></app-addtodo>-->
+
+<app-addtodo (todoAdd)="addTodo($event)"></app-addtodo>
+<h3 class="m-5">Your Todo Tasks List</h3>
+
+<!--ngif for showing that if no todo is there, then show that no todo-->
+<div *ngIf="this.todos.length===0; else elseBlock" class="m-5">No todos to display</div>
+<ng-template #elseBlock>
+    <div *ngFor = "let todo of todos" class="m-5">
+       <!-- <app-todoitems [todo]="todo" (todoDelete)="deleteTodo($event)"></app-todoitems>-->
+        <app-todoitems [todo]="todo" (todoDelete)="deleteTodo($event)" (todoCheckbox)="ToggleTodo($event)"></app-todoitems>
+    </div>
+    </ng-template>
+
+
+
+<!--<div *ngFor = "let todo of todos" class="m-5">
+    <app-todoitems [todo]="todo" (todoDelete)="deleteTodo($event)"></app-todoitems>
+</div>-->
+</div>

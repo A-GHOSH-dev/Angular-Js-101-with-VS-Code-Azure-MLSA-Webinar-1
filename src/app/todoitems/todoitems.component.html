@@ -1,0 +1,32 @@
+<!--<p>todoitems works!</p>-->
+
+<!--<p>{{todo.title}}</p>-->
+
+<!--<div class="my-5">
+<h3>{{todo.title}}</h3>
+<p>{{todo.desc}}</p>
+<button class="btn btn-danger">Delete</button>
+</div>-->
+
+<!--<div class="my-5">
+    <h3>{{todo.title}}</h3>
+    <p>{{todo.desc}}</p>
+    <button class="btn btn-danger" (click)="onClick(todo)">Delete</button>
+    </div>-->
+
+
+    <div class="my-5">
+        <!-- <h3 [class]="'nostrike'?todo.active:'strike'">{{todo.title}}</h3>-->
+     <!--[ngClass]="{'strike': !todo.active}"-->
+        <h3 [ngClass]="{'strike': !todo.active}">{{todo.title}}</h3>
+     
+         <p>{{todo.desc}}</p>
+     
+         <div class="mb-3 form-check">
+             <input type="checkbox" class="form-check-input" id="exampleCheck1" (click)="onCheckboxClick(todo)">
+             <label class="form-check-label" for="exampleCheck1">Mark As Done</label>
+           </div>
+     
+     
+         <button class="btn btn-danger" (click)="onClick(todo)">Delete</button>
+         </div>
