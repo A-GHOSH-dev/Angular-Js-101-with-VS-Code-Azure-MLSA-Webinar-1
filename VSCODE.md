@@ -364,8 +364,10 @@
 
 
 <h6>References</h6>
-- https://flaviocopes.com/vscode/
-- https://code.visualstudio.com/docs/introvideos/basics
-- https://code.visualstudio.com/docs/getstarted/introvideos
-- https://code.visualstudio.com/docs/nodejs/angular-tutorial
-- https://en.wikipedia.org/wiki/Visual_Studio_Code
+<ul>
+  <li>https://flaviocopes.com/vscode/</li>
+  <li>https://code.visualstudio.com/docs/introvideos/basics</li>
+  <li>https://code.visualstudio.com/docs/getstarted/introvideos</li>
+  <li>https://code.visualstudio.com/docs/nodejs/angular-tutorial</li>
+  <li>https://en.wikipedia.org/wiki/Visual_Studio_Code</li>
+  </ul>
