@@ -1,3 +1,5 @@
+<h1 style="text-align:centre"> VS CODE GUIDE </h1>
+
 <ul>
 <li><a href="#introduction">Introduction</a></li>
 <li><a href="#should-i-switch-to-vs-code-and-why">Should I switch to VS Code? And why?</a></li>
