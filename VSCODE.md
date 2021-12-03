@@ -361,3 +361,11 @@
 <li><a href="https://marketplace.visualstudio.com/items?itemName=formulahendry.auto-close-tag"><strong>Auto Close Tag</strong></a> automatically close HTML/JSX/* tags</li>
 <li><a href="https://marketplace.visualstudio.com/items?itemName=formulahendry.auto-rename-tag"><strong>Auto Rename Tag</strong></a> automatically renames the closing tag when you change the opening one, and the opposite as well</li>
 </ul>
+
+
+<h6>References</h6>
+- https://flaviocopes.com/vscode/
+- https://code.visualstudio.com/docs/introvideos/basics
+- https://code.visualstudio.com/docs/getstarted/introvideos
+- https://code.visualstudio.com/docs/nodejs/angular-tutorial
+- https://en.wikipedia.org/wiki/Visual_Studio_Code
