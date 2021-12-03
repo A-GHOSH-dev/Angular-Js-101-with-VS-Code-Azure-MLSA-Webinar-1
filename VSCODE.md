@@ -13,8 +13,6 @@
 <li><a href="#the-command-palette">The Command Palette</a></li>
 <li><a href="#themes">Themes</a></li>
 <li><a href="#customization">Customization</a></li>
-<li><a href="#nice-configuration-options">Nice configuration options</a></li>
-<li><a href="#the-best-font-for-coding">The best font for coding</a></li>
 <li><a href="#workspaces">Workspaces</a></li>
 <li><a href="#editing">Editing</a>
 
@@ -27,8 +25,6 @@
 </ul></li>
 <li><a href="#code-snippets">Code snippets</a></li>
 <li><a href="#extensions-showcase">Extensions showcase</a></li>
-<li><a href="#the-vs-code-cli-command">The VS Code CLI command</a></li>
-<li><a href="#solving-high-usage-cpu-issues">Solving high usage CPU issues</a></li>
 </ul>
 
 <h2 id="introduction">Introduction</h2>
