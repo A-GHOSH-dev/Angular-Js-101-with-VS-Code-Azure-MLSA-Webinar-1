@@ -1,4 +1,4 @@
-# IEEE SPS Session on Angular Js 101 with VS Code and Azure - 4th December, 2021
+# MLSA Session on Angular Js 101 with VS Code and Azure - 4th December, 2021
 
 ## Installation Guide for VS Code + Node js + Angular CLI + GitHub + Azure Account Making
 https://www.canva.com/design/DAEwdyn1btA/MwWm3A0xmWsV_WEmxVQHMA/view?utm_content=DAEwdyn1btA&utm_campaign=designshare&utm_medium=link&utm_source=sharebutton
