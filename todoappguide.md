@@ -165,6 +165,72 @@ routerLink="/pathname" routerLinkActive="active"
     <button type="submit" class="btn btn-primary">Add Todo</button>
   </form>
 ```
+- #### Store the input by users in variables so that we can use that variable to display it on our page:
+##### For this purpose we are using this in form
+```
+[(ngModel)]="title"
+```
+- #### Submit 
+##### For submitting the form, we create a submit function and call the function when form is submitted.
+```
+(ngSubmit)="onSubmit()"
+```
+##### In addtodo.component.ts we have to build the function for submit.
+- Initialize the variables which will store the user data
+```
+export class AddtodoComponent implements OnInit {
+title: string;
+desc: string;
+```
+- Make onSubmit function:
+```
+onSubmit(){
+    const todo = {
+      slno: 8,
+      title: this.title,
+      desc: this.desc,
+      active: true
+    }
+    this.todoAdd.emit(todo);
+  }
+```
+- The event todoAdd I have to emit to the parent component todos
+```
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+@Output() todoAdd: EventEmitter<Todo> = new EventEmitter();
+```
+- The complete Code for addtodo.component.ts:
+```
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Todo } from 'src/app/Todo';
+
+@Component({
+  selector: 'app-addtodo',
+  templateUrl: './addtodo.component.html',
+  styleUrls: ['./addtodo.component.css']
+})
+export class AddtodoComponent implements OnInit {
+title: string;
+desc: string;
+@Output() todoAdd: EventEmitter<Todo> = new EventEmitter();
+
+  
+  constructor() { }
+
+  ngOnInit(): void {
+  }
+  onSubmit(){
+    const todo = {
+      slno: 8,
+      title: this.title,
+      desc: this.desc,
+      active: true
+    }
+    this.todoAdd.emit(todo);
+  }
+
+}
+```
 ## Data sharing and Logic building
 
 //Add todo- Form, store variables or data given in form, submit - DONE
