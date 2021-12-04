@@ -284,11 +284,394 @@ desc: string;
 
 }
 ```
-## Data sharing and Logic building
+- the ading Todo function has to be created in todos.component.ts:
+```
+//add TODO
+  addTodo(todo: Todo){
+    console.log(todo);
+    //properly add to array of js using push method
+    
+    this.todos.push(todo);
+    //save in local STorage
+    localStorage.setItem("todos", JSON.stringify(this.todos));
+  }
+```
+- The complete Code for todos.component.ts:
+```
+import { Component, OnInit } from '@angular/core';
+import { discardPeriodicTasks } from '@angular/core/testing';
+import { Todo } from '../Todo'; //import Todo from Todo.ts
 
-//Add todo- Form, store variables or data given in form, submit - DONE
-//todo displayed - DONE
-//store/save todo list- localsystem- DONE
-//delete todo - DONE
-//mark as done/undone- checkbox- toggle - DONE
-//if there is no todo- display no todos to display - DONE
+@Component({
+  selector: 'app-todos',
+  templateUrl: './todos.component.html',
+  styleUrls: ['./todos.component.css']
+})
+export class TodosComponent implements OnInit {
+  localItem: string | null; //for saving data
+  todos:Todo[]; //make array
+
+  constructor() { //make array to put data
+    this.localItem = localStorage.getItem("todos");
+    if(this.localItem == null){
+       
+    this.todos = [];
+    }
+   else{
+     this.todos=JSON.parse(this.localItem);
+   }
+   }
+
+  ngOnInit(): void {
+  }
+  //add TODO
+  addTodo(todo: Todo){
+    console.log(todo);
+    //properly add to array of js using push method
+    
+    this.todos.push(todo);
+    //save in local STorage
+    localStorage.setItem("todos", JSON.stringify(this.todos));
+  }
+}
+```
+- #### In todos.component.html we need to add the app-addtodo component:
+```
+<div class="m-5">
+<h1 class="text-center">My Todo App</h1>
+<app-addtodo (todoAdd)="addTodo($event)"></app-addtodo>
+```
+addTodo -> from Parent -> todos.component.ts
+todoAdd -> from child -> addtodo.component.ts
+
+### Display the Added Todo on page
+- #### In todoitems.component.html, make the html template
+```
+<div class="my-5">
+        <h3>{{todo.title}}</h3>
+     
+         <p>{{todo.desc}}</p>
+     
+         <div class="mb-3 form-check">
+             <input type="checkbox" class="form-check-input" id="exampleCheck1">
+             <label class="form-check-label" for="exampleCheck1">Mark As Done</label>
+           </div>
+     
+     
+         <button class="btn btn-danger">Delete</button>
+         </div>
+```
+- #### In todos.component.html, add the app-todoitems, and use for loop to add the todos there
+```
+<h3 class="m-5">Your Todo Tasks List</h3>
+    <div *ngFor = "let todo of todos" class="m-5">
+        <app-todoitems [todo]="todo"></app-todoitems>
+    </div>
+```
+
+### Delete Todo
+- #### In todoitems.component.html, for the delete button, add this
+```
+<button class="btn btn-danger" (click)="onClick(todo)">Delete</button>
+```
+##### onClick is a function that we have called here. We have to now build/define this function.
+- #### In todoitems.components.ts we define the onClick function
+```
+onClick(todo: Todo){
+    this.todoDelete.emit(todo);
+    console.log("onClick has been triggered")
+  }
+```
+- #### In todoitems.component.ts we have to
+```
+import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
+//input parent to child
+  @Input() todo: Todo;
+  //event emitter for deleting action- child to parent
+  @Output() todoDelete: EventEmitter<Todo> = new EventEmitter();
+```
+- #### Complete Code in todoitems.component.ts:
+```
+import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
+import { Todo } from 'src/app/Todo';
+
+
+@Component({
+  selector: 'app-todoitems',
+  templateUrl: './todoitems.component.html',
+  styleUrls: ['./todoitems.component.css']
+})
+export class TodoitemsComponent implements OnInit {
+  //input parent to child
+  @Input() todo: Todo;
+  //event emitter for deleting action- child to parent
+  @Output() todoDelete: EventEmitter<Todo> = new EventEmitter();
+
+  constructor() { }
+
+  ngOnInit(): void {
+  }
+  onClick(todo: Todo){
+    this.todoDelete.emit(todo);
+    console.log("onClick has been triggered")
+  }
+
+}
+```
+- #### In todos.component.ts we have to make the function defination and what will happen when function is called
+```
+deleteTodo(todo: Todo){
+    console.log(todo);
+    //properly delete from array of js using splice method
+    const index = this.todos.indexOf(todo);
+    this.todos.splice(index, 1);
+    //save in local Storage
+    localStorage.setItem("todos", JSON.stringify(this.todos));
+  }
+```
+- #### Complete code of todos.component.ts:
+```
+import { Component, OnInit } from '@angular/core';
+import { discardPeriodicTasks } from '@angular/core/testing';
+import { Todo } from '../Todo'; //import Todo from Todo.ts
+
+@Component({
+  selector: 'app-todos',
+  templateUrl: './todos.component.html',
+  styleUrls: ['./todos.component.css']
+})
+export class TodosComponent implements OnInit {
+  localItem: string | null; //for saving data
+  todos:Todo[]; //make array
+
+  constructor() { //make array to put data
+    this.localItem = localStorage.getItem("todos");
+    if(this.localItem == null){
+       
+    this.todos = [];
+    }
+   else{
+     this.todos=JSON.parse(this.localItem);
+   }
+   }
+
+  ngOnInit(): void {
+  }
+  deleteTodo(todo: Todo){
+    console.log(todo);
+    //properly delete from array of js using splice method
+    const index = this.todos.indexOf(todo);
+    this.todos.splice(index, 1);
+    //save in local STorage
+    localStorage.setItem("todos", JSON.stringify(this.todos));
+  }
+  //add TODO
+  addTodo(todo: Todo){
+    console.log(todo);
+    //properly add to array of js using push method
+    
+    this.todos.push(todo);
+    //save in local Storage
+    localStorage.setItem("todos", JSON.stringify(this.todos));
+  }
+}
+```
+- #### In todos.component.html, we need to assign the event to the function
+```
+ <div *ngFor = "let todo of todos" class="m-5">
+        <app-todoitems [todo]="todo" (todoDelete)="deleteTodo($event)"></app-todoitems>
+    </div>
+```
+deleteTodo -> from parent component -> todos.component.ts
+todoDelete -> from child component -> todoitems.component.ts
+- #### Complete code for todos.component.html
+```
+<div class="m-5">
+    <h1 class="text-center">My Todo App</h1>
+<app-addtodo (todoAdd)="addTodo($event)"></app-addtodo>
+<h3 class="m-5">Your Todo Tasks List</h3>
+    <div *ngFor = "let todo of todos" class="m-5">
+        <app-todoitems [todo]="todo" (todoDelete)="deleteTodo($event)"></app-todoitems>
+    </div>
+</div>
+```
+
+### Mark as Done/Undone using the checkbox
+- #### In todoitems.component.html add this onCheckboxClick function in input checkbox field
+```
+ <input type="checkbox" class="form-check-input" id="exampleCheck1" (click)="onCheckboxClick(todo)">
+```
+- #### In todoitems.component.ts
+```
+@Output() todoCheckbox: EventEmitter<Todo> = new EventEmitter();
+
+onCheckboxClick(todo: any){
+    this.todoCheckbox.emit(todo);
+  }
+```
+- #### Complete code in todoitem.component.ts is
+```
+import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
+import { Todo } from 'src/app/Todo';
+
+
+@Component({
+  selector: 'app-todoitems',
+  templateUrl: './todoitems.component.html',
+  styleUrls: ['./todoitems.component.css']
+})
+export class TodoitemsComponent implements OnInit {
+  //input parent to child
+  @Input() todo: Todo;
+  //event emitter for deleting action- child to parent
+  @Output() todoDelete: EventEmitter<Todo> = new EventEmitter();
+  @Output() todoCheckbox: EventEmitter<Todo> = new EventEmitter();
+
+  constructor() { }
+
+  ngOnInit(): void {
+  }
+  onClick(todo: Todo){
+    this.todoDelete.emit(todo);
+    console.log("onClick has been triggered")
+  }
+  onCheckboxClick(todo: any){
+    this.todoCheckbox.emit(todo);
+  }
+
+}
+```
+- #### In todos.component.ts we have build the logic and function
+```
+ToggleTodo(todo: Todo){
+    const index = this.todos.indexOf(todo);
+    this.todos[index].active = !this.todos[index].active;
+
+    //save in local STorage
+    localStorage.setItem("todos", JSON.stringify(this.todos));
+  }
+```
+- #### Complete code in todos.component.ts:
+```
+import { Component, OnInit } from '@angular/core';
+import { discardPeriodicTasks } from '@angular/core/testing';
+import { Todo } from '../Todo'; //import Todo from Todo.ts
+
+@Component({
+  selector: 'app-todos',
+  templateUrl: './todos.component.html',
+  styleUrls: ['./todos.component.css']
+})
+export class TodosComponent implements OnInit {
+  localItem: string | null; //for saving data
+  todos:Todo[]; //make array
+
+  constructor() { //make array to put data
+    this.localItem = localStorage.getItem("todos");
+    if(this.localItem == null){
+       
+    this.todos = [];
+    }
+   else{
+     this.todos=JSON.parse(this.localItem);
+   }
+   }
+
+  ngOnInit(): void {
+  }
+  deleteTodo(todo: Todo){
+    console.log(todo);
+    //properly delete from array of js using splice method
+    const index = this.todos.indexOf(todo);
+    this.todos.splice(index, 1);
+    //save in local STorage
+    localStorage.setItem("todos", JSON.stringify(this.todos));
+  }
+  //add TODO
+  addTodo(todo: Todo){
+    console.log(todo);
+    //properly add to array of js using push method
+    
+    this.todos.push(todo);
+    //save in local STorage
+    localStorage.setItem("todos", JSON.stringify(this.todos));
+  }
+
+  ToggleTodo(todo: Todo){
+    const index = this.todos.indexOf(todo);
+    this.todos[index].active = !this.todos[index].active;
+
+    //save in local STorage
+    localStorage.setItem("todos", JSON.stringify(this.todos));
+  }
+
+}
+```
+- #### In todos.component.html we have to assign the function the event
+```
+<div *ngFor = "let todo of todos" class="m-5">
+        <app-todoitems [todo]="todo" (todoDelete)="deleteTodo($event)" (todoCheckbox)="ToggleTodo($event)"></app-todoitems>
+    </div>
+```
+ToggleTodo -> from parent
+todoCheckbox -> from child
+- #### Complete code for todos.component.html:
+```
+<div class="m-5">
+    <h1 class="text-center">My Todo App</h1>
+<app-addtodo (todoAdd)="addTodo($event)"></app-addtodo>
+<h3 class="m-5">Your Todo Tasks List</h3>
+    <div *ngFor = "let todo of todos" class="m-5">
+        <app-todoitems [todo]="todo" (todoDelete)="deleteTodo($event)" (todoCheckbox)="ToggleTodo($event)"></app-todoitems>
+    </div>
+</div>
+```
+- #### Strike off the title of todo which we mark as done, and unstrike the one we mark from one to undone. In todoitems.component.html:
+```
+ <h3 [ngClass]="{'strike': !todo.active}">{{todo.title}}</h3>
+```
+- #### In todoitems.component.css:
+```
+.strike{
+    text-decoration: line-through;
+}
+```
+- #### Complete code for todoitems.component.html:
+```
+<div class="my-5">
+        <h3 [ngClass]="{'strike': !todo.active}">{{todo.title}}</h3>    
+         <p>{{todo.desc}}</p>    
+         <div class="mb-3 form-check">
+             <input type="checkbox" class="form-check-input" id="exampleCheck1" (click)="onCheckboxClick(todo)">
+             <label class="form-check-label" for="exampleCheck1">Mark As Done</label>
+           </div>
+         <button class="btn btn-danger" (click)="onClick(todo)">Delete</button>
+</div>
+```
+
+### If No todo, Display todolist empty
+- #### We need a if else here. If todos array length is 0 then we have to display 'No todos to display', else, display the available todos from array. In todos.component.html:
+```
+<div *ngIf="this.todos.length===0; else elseBlock" class="m-5">No todos to display</div>
+<ng-template #elseBlock>
+    <div *ngFor = "let todo of todos" class="m-5">
+        <app-todoitems [todo]="todo" (todoDelete)="deleteTodo($event)" (todoCheckbox)="ToggleTodo($event)"></app-todoitems>
+    </div>
+    </ng-template>
+</div>
+```
+- #### Complete code for todos.component.html:
+```
+<div class="m-5">
+    <h1 class="text-center">My Todo App</h1>
+<app-addtodo (todoAdd)="addTodo($event)"></app-addtodo>
+<h3 class="m-5">Your Todo Tasks List</h3>
+<div *ngIf="this.todos.length===0; else elseBlock" class="m-5">No todos to display</div>
+<ng-template #elseBlock>
+    <div *ngFor = "let todo of todos" class="m-5">
+        <app-todoitems [todo]="todo" (todoDelete)="deleteTodo($event)" (todoCheckbox)="ToggleTodo($event)"></app-todoitems>
+    </div>
+    </ng-template>
+</div>
+```
+## Data sharing and Logic building
