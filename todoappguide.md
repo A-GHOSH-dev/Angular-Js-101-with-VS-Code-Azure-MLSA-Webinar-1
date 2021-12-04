@@ -70,7 +70,7 @@ const routes: Routes = [
 export class AppRoutingModule { }
 ```
 ## Deciding requirements of a ToDo list
-### Make a Todo.ts file in app folder
+- ### Make a Todo.ts file in app folder
 ```
 //create this file and put this class
 
@@ -80,6 +80,59 @@ export class Todo{
     desc: string
     active: boolean
 }
+```
+- ### In todos.component.ts, make an array todos to store all Todos
+```
+todos:Todo[]; //make array
+this.todos = [];
+```
+- ### Store/Save the todos so that when page reloads, the data is not lost, so we save the data in localStorage
+```
+//initialize variable localItem which will store data in localStorage
+localItem: string | null; //for saving data
+  todos:Todo[]; //make array
+
+  constructor() { //make array to put data
+    this.localItem = localStorage.getItem("todos");
+    if(this.localItem == null){ //if no items are recieved by localStorage
+       
+    this.todos = []; //keeping array empty  
+    }
+   else{ //if item is stored in localstorage, then 
+     this.todos=JSON.parse(this.localItem);
+     //for json.parse():
+     //https://www.w3schools.com/Js/tryit.asp?filename=tryjson_parse
+     //https://www.w3schools.com/Js/tryit.asp?filename=tryjson_parse_array
+   }
+   }
+```
+- ### Complete todos.component.ts file code:
+```
+import { Component, OnInit } from '@angular/core';
+import { discardPeriodicTasks } from '@angular/core/testing';
+import { Todo } from '../Todo'; //import Todo from Todo.ts
+
+@Component({
+  selector: 'app-todos',
+  templateUrl: './todos.component.html',
+  styleUrls: ['./todos.component.css']
+})
+export class TodosComponent implements OnInit {
+  localItem: string | null; //for saving data
+  todos:Todo[]; //make array
+
+  constructor() { //make array to put data
+    this.localItem = localStorage.getItem("todos");
+    if(this.localItem == null){
+       
+    this.todos = [];
+    }
+   else{
+     this.todos=JSON.parse(this.localItem);
+   }
+   }
+   ngOnInit(): void {
+  }
 ```
 ## HTML Template creation
 ### In app.component.html make the navigation bar:
