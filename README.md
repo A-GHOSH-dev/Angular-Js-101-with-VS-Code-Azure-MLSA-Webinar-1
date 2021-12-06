@@ -12,3 +12,6 @@ https://www.canva.com/design/DAEwd5R3Lg8/N3C3toJ5QYgJ3UvcfYlzJA/view?utm_content
 
 ## Web App Project Hosted
 https://ashy-rock-0097b0910.azurestaticapps.net/
+
+## Recording of the Webinar:
+https://www.youtube.com/watch?v=_byArjxNypE&t=12s
