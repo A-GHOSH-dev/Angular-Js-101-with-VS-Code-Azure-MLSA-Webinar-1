@@ -18,3 +18,16 @@ https://ashy-rock-0097b0910.azurestaticapps.net/
 https://www.youtube.com/watch?v=_byArjxNypE&t=12s
 
 # Contribute to this repository: [Contribution Guide](https://github.com/A-GHOSH-dev/Angular-Js-101-with-VS-Code-Azure-MLSA-Webinar-1/blob/master/Contribution%20Guide.md)
+
+## Projects:
+- Todo App
+- Calculator
+- Quiz App
+- Blog App
+- Portfolio
+- Game Database App using Public API
+
+## Topics:
+- VS Code
+- Azure
+- Angular
