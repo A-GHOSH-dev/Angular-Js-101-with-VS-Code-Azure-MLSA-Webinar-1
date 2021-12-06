@@ -26,6 +26,7 @@ https://www.youtube.com/watch?v=_byArjxNypE&t=12s
 - Blog App
 - Portfolio
 - Game Database App using Public API
+- News App with API
 
 ## Topics:
 - VS Code
