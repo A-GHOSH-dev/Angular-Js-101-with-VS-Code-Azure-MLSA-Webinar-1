@@ -6,30 +6,37 @@
 - Create a [Github](https://github.com/join) Account 📇
 - Download and install latest stable version of [VS Code](https://code.visualstudio.com/download)
 
+## Issues
+- You can visit the issues created by the maintainer. And comment below the issue, if you want to work on this issue. And mention in approximately how many days you can create a PR.
+
+> ### Guidelines for raising a new issue:
+>
+> - Each issue should have an appropriate and short title like "Building a Email GUI App in Angular" or "Fixing the bug in Quiz App- Bug description"
+>
+> - Whenever a participant raises an issue, by default it would be assigned to that participant due to obvious reasons. 
+>
+> - Be specific about your intended changes/suggestions
+
 ##   A. Setting up the Project
 
-**1.**  Fork [this](https://github.com/smaranjitghose/awesome-portfolio-websites) repository.
-
-<p align="center"><img src="readme_assets\Fork_Repo.gif" width="500" height="200" /></p>
-
+**1.**  Fork [this](https://github.com/A-GHOSH-dev/Angular-Js-101-with-VS-Code-Azure-MLSA-Webinar-1) repository.
 
 **2.**  Clone your forked copy of the project.
 
 ```
-git clone --depth 1 https://github.com/<your_user_name>/awesome-portfolio-websites.git
+git clone --depth 1 https://github.com/<your_user_name>/Angular-Js-101-with-VS-Code-Azure-MLSA-Webinar-1.git
 ```
-<p align="center"><img width=35% src="readme_assets\clone_repo.gif" width="500" height="200" /></p>
 
 **3.** Navigate to the project directory :file_folder: .
 
 ```
-cd awesome-portfolio-websites
+cd Angular-Js-101-with-VS-Code-Azure-MLSA-Webinar-1
 ```
 
 **4.** Add a reference to the original repository.
 
 ```
-git remote add upstream https://github.com/smaranjitghose/awesome-portfolio-websites.git 
+git remote add upstream https://github.com/A-GHOSH-dev/Angular-Js-101-with-VS-Code-Azure-MLSA-Webinar-1.git 
 ```
 
 **5.** Check the remotes for this repository.
@@ -64,8 +71,6 @@ git checkout -b <your_branch_name>
 
 - Preview your changes and test them properly before proceding ahead
 
-<p align="center"><img width=35% src="https://media2.giphy.com/media/L1R1tvI9svkIWwpVYr/giphy.gif?cid=ecf05e47pzi2rpig0vc8pjusra8hiai1b91zgiywvbubu9vu&rid=giphy.gif"></p>
-
 - Make a small clip or take screenshots before and after making changes.
 
 
@@ -90,23 +95,15 @@ git push -u origin <your_branch_name>
 
 **6.** To create a pull request, click on `compare and pull requests`. Please ensure you compare your feature branch to the desired branch of the repo you are suppose to make a PR to.
 
-<img src="./readme_assets/ComparePR.png" width=600>
-
 **7.** Then add an appropriate title and description to your pull request that explains your changes and efforts done.
-
 
 **8.** Click on `Create Pull Request`.
 
-<img src="./readme_assets/CreatePR.png" width=600>
-
 > ### Guidelines for raising a pull request:
 >
-> - Each pull request should have an appropriate and short title like "Fixed Bug in Experience Page"
+> - Each pull request should have an appropriate and short title like "Built a Quiz App in Angular: Component Name- quizapp"
 >
 > - In case of multiple commits, please perform a rebase and make a squash commit before giving the pull request.
 >
 > - Pull Requests without a description would often not be reviewed. Make sure you describe your intended changes in the description section of the pull request. (Use bullet points and phrases)
 >
-> - Make sure to refer the respective issue in the respective PR using phrases like `Resolves #issue_number` or `Closes #issue_number`.  Here's an example to raise a PR:
-```
- Fixes #640
